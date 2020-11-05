@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="eng">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		New Interview
+	</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="css/calendar.css">
+</head>
+<body style="margin: 50px 30% 0 30%; padding: 10px">
+	<form method="POST" action="home.html" style="border-color: 'grey' ">
+
+		<label for="interviewer_name"> Interviewer Name: </label>
+		<input type="text" id="interviewer_name" placeholder="Interviewer Name"> <br> <br>
+
+		<label for="interviewee_name"> Interviewee Name: </label>
+		<input type="text" id="interviewee_name" placeholder="Interviewee Name" > <br> <br>
+
+		<label for="interviewer_email"> Interviewer Email: </label>
+		<input type="email" id="interviewer_email" placeholder="interviewer_email@gmail.com" required="required"> <br> <br>
+
+		<label for="interviewee_email"> Interviewee Email: </label>
+		<input type="email" id="interviewee_email" placeholder="interviewee_email@gmail.com" required="required"> <br> <br>
+
+		<label for="interview_date"> Interview Date: </label>
+		<input type="date" id="interview_date" required="required"> <br> <br>
+
+		<label for="start_time"> Start Time: </label>
+		<input type="time" id="start_time" required="required"> <br> <br>
+
+		<label for="end_time"> End Time: </label>
+		<input type="time" id="end_time" required="required"> <br> <br>
+		
+		<button type="Submit" class="btn btn-danger btn-block" id="btn_clear_storage" > SUBMIT </button>
+		<button type="reset" class="btn btn-danger btn-block" id="btn_clear_storage"  > RESET </button><br><br>
+
+		
+
+	</form>
+</body>
+</html>
