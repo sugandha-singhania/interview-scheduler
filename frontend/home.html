@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-framework="javascript">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calendar App</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="css/calendar.css">
+</head>
+
+<body>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <h1 class="text-center">Interview Scheduler Application</h1>
+            </div>
+        </div>
+        <br>
+      <br><hr>
+
+        <div class="row">
+            <div class="col offset-md-1">
+                <div class="row">
+                    <div class="col">
+                        <h3>Schdeuled Interviews</h3>
+                    </div>
+                    <div class="col form-group">
+                        <button type="button" class="btn btn-danger btn-block" id="btn_clear_storage" onclick="location.href = 'form.html';">Create New</button>
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover table-striped table-sm" id="interview_list">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-center align-middle">Id</th>
+                            <th scope="col" class="text-center align-middle">Date</th>
+                            <th scope="col" class="text-center align-middle">Interviewer</th>
+                            <th scope="col" class="text-center align-middle">Interviewee</th>
+                            <th scope="col" class="text-center align-middle">Start time</th>
+                            <th scope="col" class="text-center align-middle">End time</th>
+                            <th scope="col" class="text-center align-middle">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+
+
+
+</body>
+
+</html>
