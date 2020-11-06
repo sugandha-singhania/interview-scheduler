@@ -1,6 +1,12 @@
 #!flask/bin/python
 from flask import Flask, request, jsonify, render_template
 import mysql.connector
+from email import mime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
+# import encoders
+import smtplib,email,email.encoders,email.mime.text,email.mime.base
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -22,10 +28,7 @@ def dummy():
 
 @app.route('/')
 def index():
-  # mycursor.execute("SELECT * FROM interview")
-
-  # myresult = mycursor.fetchall()
-  return render_template("form.html")
+  return render_template("home.html")
 
 
 @app.route('/new_interview',methods=['POST', 'GET'])
@@ -80,15 +83,15 @@ def submit_edit_interview():
     end = json_data["end_time"]
     interview_id=json_data["interview_id"]
 
-
     mycursor.execute("SELECT * FROM interview")
     myresult = mycursor.fetchall()
 
     flag=0
     for x in myresult:
-      if ((interviewer_email==x[6] or interviewee_email==x[7]) and date==x[3] and ((start>=x[4] and start<=x[5] ) or (end>=x[4] and end<=x[5] ))):
-          flag=1
-          print(x)
+        if interview_id!=x[0]:
+            if ((interviewer_email==x[6] or interviewee_email==x[7]) and date==x[3] and ((start>=x[4] and start<=x[5] ) or (end>=x[4] and end<=x[5] ))):
+                flag=1
+                print(x)
 
     if flag==1:
         return "error"
@@ -106,6 +109,32 @@ def delete_interview():
     mydb.commit()
     return "deleted"
 
+
+def send_an_email(recipient,data):
+
+    fromaddr = "prakash.sanchi@gmail.com"
+    password= "bhdgsacvayu"
+    toaddr = recipient
+
+    msg = MIMEMultipart()
+    msg['From'] = fromaddr
+    msg['To'] = toaddr
+    msg['Subject'] = "interview"
+    body = ""
+
+    msg.attach(MIMEText(body, 'plain'))
+    print(msg)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    s.starttls()
+    s.login(fromaddr, password)
+    text = msg.as_string()
+    s.sendmail(fromaddr, toaddr, text)
+    s.quit()
+    dict  = {'response': "true" }
+    return jsonify(dict)
+
+# send_an_email("prakash.sanchi1998@gmail.com","hello")
 
 if __name__ == '__main__':
     app.run(debug=True)

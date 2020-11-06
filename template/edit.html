@@ -8,12 +8,14 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-		<script src="static/js/new.js"></script>
+		<script src="static/js/edit.js"></script>
 </head>
 
 
 <body style="margin: 50px 30% 0 30%; padding: 10px">
 	<form id="neww" style="border-color: 'grey' ">
+		<label for="id"> Id: </label>
+		<input type="text" id="id" placeholder="ID"> <br> <br>
 
 		<label for="interviewer_name"> Interviewer Name: </label>
 		<input type="text" id="interviewer_name" placeholder="Interviewer Name"> <br> <br>
@@ -36,11 +38,12 @@
 		<label for="end_time"> End Time: </label>
 		<input type="time" id="end_time" required="required"> <br> <br>
 
-		<input type="hidden" name="token" value="sugandha"><br><br>
-
-		<button type="button" class="btn btn-danger btn-block" id="button" > SUBMIT </button>
+		<button type="button" class="btn btn-danger btn-block" id="button" > SUBMIT
+		</button>
 
 		<button type="reset" class="btn btn-danger btn-block" id="reset"  > RESET </button><br><br>
+		
 	</form>
+
 	</body>
 </html>

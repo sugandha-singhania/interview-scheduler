@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Interview Scheduler App</title>
+    <title>Calendar App</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -29,8 +29,18 @@
                         <h3>Schdeuled Interviews</h3>
                     </div>
                     <div class="col form-group">
-                        <button type="button" class="btn btn-danger btn-block" id="btn_clear_storage" onclick="location.href = 'form.html';">Create New</button>
-                    </div>
+                        <button type="button" class="btn btn-danger btn-block" onclick="location.href = 'form.html';">Create New</button>
+			<button type="button" class="btn btn-danger btn-block" onclick="location.href = 'edit.html';">Edit</button>
+			<!-- <button type="button" class="btn btn-danger btn-block" >Delete</button> -->
+			Interview Id to be deleted:
+			<input type="button"  value="Enter" name="btn" />
+			<input type="button"  value="Submit" name="btn" />
+			<hr />
+      <div id="dvi" style="display: none">
+        ID:
+        <input type="text" id="idt" />
+      </div>
+                   </div>
                 </div>
                 <table class="table table-bordered table-hover table-striped table-sm" id="interview_list">
                     <thead class="thead-dark">
@@ -38,7 +48,7 @@
                             <th scope="col" class="text-center align-middle">Id</th>
                             <th scope="col" class="text-center align-middle">Date</th>
                             <th scope="col" class="text-center align-middle">Interviewer</th>
-                            <th scope="col" class="text-center align-middle">Interviewee</th>
+                            <th scope="col" class="text-center align-middle">Candidate</th>
                             <th scope="col" class="text-center align-middle">Start time</th>
                             <th scope="col" class="text-center align-middle">End time</th>
                             <th scope="col" class="text-center align-middle">Action</th>
@@ -55,5 +65,36 @@
 
 
 </body>
+<script type="text/javascript">
+    // function ShowHideDiv(btn) {
+    //     var dvi = document.getElementById("dvi");
+    //     dvi.style.display = btn.value == "Enter" ? "block" : "none";
+    // }
 
+    $(function () {
+        $("input[name=btn]").click(function () {
+            if ($(this).val() == "Enter") {
+                $("#dvi").show();
+            } else {
+                $("#dvi").hide();
+            }
+        });
+    });
+
+    $(function(){
+      $('Submit').click(function(){
+	       $.ajax({
+		         url: '/delete_interview',
+		         data: $('form').serialize(),
+		         type: 'POST',
+		         success: function(response){
+			            console.log(response);
+		              },
+		         error: function(error){
+			            console.log(error);
+		              }
+	       });
+       });
+  });
+  </script>
 </html>
