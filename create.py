@@ -5,20 +5,20 @@ from email import mime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
-# import encoders
+#import encoders
 import smtplib,email,email.encoders,email.mime.text,email.mime.base
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="very_strong_password",
-  database="interview_scheduler",
-  auth_plugin="mysql_native_password"
+  host = "localhost",
+  user = "root",
+  password = "very_strong_password",
+  database = "interview_scheduler",
+  auth_plugin = "mysql_native_password"
 )
 
 mycursor = mydb.cursor()
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='template',  static_folder='static')
 
 @app.route('/dummy',methods=['POST', 'GET'])
 def dummy():
@@ -26,10 +26,20 @@ def dummy():
     return "hi"
 
 
-@app.route('/')
-def index():
+@app.route("/")
+def home():
   return render_template("home.html")
 
+  @app.route("/")
+  def form():
+    return render_template("form.html")
+
+@app.route("/")
+def edit():
+  return render_template("edit.html")
+
+# if __name__=="__javascript__":
+#     app.run(debug=True)
 
 @app.route('/new_interview',methods=['POST', 'GET'])
 def new_interview():
@@ -40,7 +50,7 @@ def new_interview():
     interviewer_email = json_data["interviewer_email"]
     interviewee_email = json_data["interviewee_email"]
     date = json_data["interview_date"]
-    start= json_data["start_time"]
+    start = json_data["start_time"]
     end = json_data["end_time"]
 
 
@@ -79,9 +89,9 @@ def submit_edit_interview():
     interviewer_email = json_data["interviewer_email"]
     interviewee_email = json_data["interviewee_email"]
     date = json_data["interview_date"]
-    start= json_data["start_time"]
+    start = json_data["start_time"]
     end = json_data["end_time"]
-    interview_id=json_data["interview_id"]
+    interview_id =json_data["interview_id"]
 
     mycursor.execute("SELECT * FROM interview")
     myresult = mycursor.fetchall()
@@ -113,7 +123,7 @@ def delete_interview():
 def send_an_email(recipient,data):
 
     fromaddr = "prakash.sanchi@gmail.com"
-    password= "bhdgsacvayu"
+    password = "bhdgsacvayu"
     toaddr = recipient
 
     msg = MIMEMultipart()
@@ -131,7 +141,7 @@ def send_an_email(recipient,data):
     text = msg.as_string()
     s.sendmail(fromaddr, toaddr, text)
     s.quit()
-    dict  = {'response': "true" }
+    dict = {'response': "true" }
     return jsonify(dict)
 
 # send_an_email("prakash.sanchi1998@gmail.com","hello")
